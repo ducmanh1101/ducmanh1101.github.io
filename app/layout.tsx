@@ -21,7 +21,7 @@ const description =
   "Web3 engineer building DeFi primitives and on-chain systems. Smart contracts, dApp interfaces, and blockchain infrastructure.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://ducmanh1101.github.io"),
   title: {
     default: title,
     template: `%s · ${profile.name}`,
