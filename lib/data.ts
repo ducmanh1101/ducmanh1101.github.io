@@ -1,7 +1,7 @@
 export const profile = {
   name: "Jake Nguyen",
   handle: "jake_dev",
-  role: "Software Engineer · Smart Contract Developer · Web3 Engineer",
+  role: "Software Engineer · Blockchain Developer · Full-Stack Developer",
   email: "jake@beraji.io",
   twitter: "@jake_dev",
   linkedin:
@@ -62,7 +62,7 @@ export const skills: Skill[] = [
 ];
 
 export type ProjectLink = {
-  label: "Award" | "GitHub" | "Etherscan" | "Docs" | "Website" | "X";
+  label: "GitHub" | "Etherscan" | "Docs" | "Website" | "X";
   href: string;
 };
 
@@ -107,10 +107,6 @@ export const projects: Project[] = [
     metrics: [{ label: "Win Prize", value: "$5000" }],
     status: "Mainnet",
     links: [
-      {
-        label: "Award",
-        href: "https://superteamvn.substack.com/i/105525751/9-solshield",
-      },
       { label: "GitHub", href: "https://github.com/ducmanh1101/solshield" },
       { label: "Website", href: "https://solshield.onrender.com" },
     ],
@@ -301,6 +297,57 @@ export const projects: Project[] = [
   },
 ];
 
+export type AwardPhoto = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+export type Award = {
+  placement: string;
+  category: string;
+  event: string;
+  organizer: string;
+  project: string;
+  summary: string;
+  prize: string;
+  prizePool: string;
+  date: string;
+  link: string;
+  photos: AwardPhoto[];
+};
+
+export const award: Award = {
+  placement: "1st Place",
+  category: "U20 Category",
+  event: "Solana Vietnam Coding Camp · Season 2",
+  organizer: "Superteam Vietnam × Solana",
+  project: "SolShield",
+  summary:
+    "First place in the U20 track with SolShield — on-chain contract creation, signing, and verification on Solana.",
+  prize: "$5,000",
+  prizePool: "$100k",
+  date: "2023",
+  link: "https://superteamvn.substack.com/i/105525751/9-solshield",
+  photos: [
+    {
+      src: "/images/presentation.webp",
+      alt: "Pitching SolShield on stage at Solana Vietnam Coding Camp",
+      caption: "Pitching to the judges",
+    },
+    {
+      src: "/images/take-reward.webp",
+      alt: "Receiving the U20 first-place award on stage",
+      caption: "Receiving the award",
+    },
+    {
+      src: "/images/cup.webp",
+      alt: "Holding the winner's trophy",
+      caption: "Winner's trophy",
+    },
+  ],
+};
+
 export type Experience = {
   role: string;
   company: string;
@@ -392,6 +439,7 @@ export const stats: Stat[] = [
 export const navItems = [
   { label: "Capabilities", href: "#skills" },
   { label: "Work", href: "#projects" },
+  { label: "Awards", href: "#awards" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ] as const;

@@ -8,7 +8,7 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="03 — Track record"
+      eyebrow="04 — Track record"
       title="Experience"
       description="Four years across DeFi, smart contract development, and frontend infrastructure."
     >

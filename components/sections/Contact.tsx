@@ -26,7 +26,7 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="04 — Get in touch"
+      eyebrow="05 — Get in touch"
       title="Have a protocol to ship?"
       description={
         <>
