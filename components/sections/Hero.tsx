@@ -1,12 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { WalletPill } from "@/components/ui/WalletPill";
-import { profile, stats } from "@/lib/data";
+import { profile, stats, experience } from "@/lib/data";
 
 const HeroScene = dynamic(
   () => import("@/components/three/HeroScene").then((m) => m.HeroScene),
@@ -18,18 +18,58 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
+// Unique roles pulled from work history, longest-to-shortest for a calmer loop.
+const roles = Array.from(new Set(experience.map((e) => e.role)));
+
+function useTypewriter(
+  words: string[],
+  { typeSpeed = 75, deleteSpeed = 35, pause = 1600 } = {},
+) {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[index % words.length];
+
+    if (!deleting && text === word) {
+      const timeout = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(timeout);
+    }
+
+    if (deleting && text === "") {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(
+      () => {
+        setText((prev) =>
+          deleting
+            ? word.slice(0, prev.length - 1)
+            : word.slice(0, prev.length + 1),
+        );
+      },
+      deleting ? deleteSpeed : typeSpeed,
+    );
+    return () => clearTimeout(timeout);
+  }, [text, deleting, index, words, typeSpeed, deleteSpeed, pause]);
+
+  return text;
+}
+
 export function Hero() {
+  const typedRole = useTypewriter(roles);
+
   return (
-    <section className="relative isolate overflow-hidden pt-36 md:pt-44">
+    <section className="relative isolate overflow-hidden pt-20 md:pt-24">
       {/* Signature: subtle trading-UI grid */}
-      <div
-        className="absolute inset-0 -z-20 grid-bg grid-mask"
-        aria-hidden
-      />
+      <div className="absolute inset-0 -z-20 grid-bg grid-mask" aria-hidden />
 
       {/* Single 3D element, calmly placed off to the side */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute right-[-15%] top-1/2 h-[700px] w-[700px] -translate-y-1/2 opacity-70 md:right-[-8%]">
+        <div className="absolute right-[-15%] top-1/2 h-[700px] w-[700px] -translate-y-1/2 opacity-70 md:right-[-3%]">
           <HeroScene />
         </div>
       </div>
@@ -55,18 +95,32 @@ export function Hero() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl"
           >
-            Building DeFi primitives
-            <br />
-            <span className="text-zinc-500">& on-chain systems.</span>
+            Hi, I&apos;m {profile.name}
           </motion.h1>
+
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="mt-4 flex h-8 items-center font-mono text-lg text-emerald-300/90 md:text-xl"
+            aria-label={roles.join(", ")}
+          >
+            <span aria-hidden>{typedRole}</span>
+            <span
+              aria-hidden
+              className="ml-1 inline-block h-[1.1em] w-[2px] translate-y-[0.1em] bg-emerald-400 animate-pulse-soft"
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-zinc-400"
           >
-            Web3 engineer focused on smart contract architecture, DeFi
-            mechanism design, and production-grade dApp interfaces.
+            I&apos;m a software engineer who fell into Web3 and never looked
+            back. Over the past few years I&apos;ve moved from building backend
+            services and full-stack products to shipping audited smart
+            contracts, DeFi vaults, and production dApps — pairing clean
+            engineering with on-chain mechanism design.
           </motion.p>
 
           <motion.div
@@ -81,7 +135,6 @@ export function Hero() {
             <ButtonLink href="#contact" variant="secondary">
               Contact
             </ButtonLink>
-            <WalletPill address={profile.walletAddress} className="ml-1" />
           </motion.div>
 
           {/* Inline credibility line — stats without a card grid */}

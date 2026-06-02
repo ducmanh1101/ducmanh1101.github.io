@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { profile } from "@/lib/data";
 
 const inter = Inter({
@@ -15,7 +16,7 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-const title = `${profile.name} — ${profile.role}`;
+const title = `${profile.name} — Portfolio`;
 const description =
   "Web3 engineer building DeFi primitives and on-chain systems. Smart contracts, dApp interfaces, and blockchain infrastructure.";
 
@@ -75,7 +76,10 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        {children}
+        <ScrollToTop />
+      </body>
     </html>
   );
 }

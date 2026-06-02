@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { navItems, profile } from "@/lib/data";
@@ -10,10 +10,30 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string>(navItems[0].href);
 
   useMotionValueEvent(scrollY, "change", (v) => {
     setScrolled(v > 24);
   });
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.querySelector(item.href))
+      .filter((el): el is Element => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.header
@@ -39,21 +59,31 @@ export function Navbar() {
           </a>
 
           <ul className="hidden items-center gap-8 md:flex">
-            {navItems.map((item, i) => (
-              <li key={item.href} className="font-mono text-xs text-zinc-500">
-                <a
-                  href={item.href}
-                  className="transition-colors hover:text-white"
-                >
-                  <span className="text-zinc-700">0{i + 1}.</span> {item.label}
-                </a>
-              </li>
-            ))}
+            {navItems.map((item, i) => {
+              const isActive = active === item.href;
+              return (
+                <li key={item.href} className="font-mono text-xs">
+                  <a
+                    href={item.href}
+                    className={cn(
+                      "relative transition-colors",
+                      isActive
+                        ? "text-white"
+                        : "text-zinc-500 hover:text-white",
+                    )}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute -bottom-1.5 left-0 right-0 h-px bg-accent"
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
-
-          <Button variant="secondary" className="px-3 py-1 text-xs">
-            Connect Wallet
-          </Button>
         </nav>
       </Container>
     </motion.header>

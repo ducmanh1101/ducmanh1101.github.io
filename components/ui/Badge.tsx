@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
 
-type Tone = "neutral" | "accent" | "live";
+type Tone = "neutral" | "accent" | "live" | "warn" | "danger";
 
 const tones: Record<Tone, string> = {
   neutral: "border-white/[0.08] text-zinc-400",
   accent: "border-accent/30 text-accent",
   live: "border-emerald-400/25 text-emerald-300",
+  warn: "border-amber-400/30 text-amber-300",
+  danger: "border-red-400/30 text-red-300",
 };
 
 type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {

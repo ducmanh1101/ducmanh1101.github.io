@@ -10,7 +10,7 @@ export function Experience() {
       id="experience"
       eyebrow="03 — Track record"
       title="Experience"
-      description="Three years across DeFi, smart contract development, and frontend infrastructure."
+      description="Four years across DeFi, smart contract development, and frontend infrastructure."
     >
       <ol className="relative">
         {experience.map((item, i) => (
@@ -23,7 +23,9 @@ export function Experience() {
             className="grid grid-cols-12 gap-4 border-t border-white/[0.06] py-8 first:border-t-0 md:gap-8 md:py-10"
           >
             <div className="col-span-12 md:col-span-3">
-              <div className="font-mono text-xs text-zinc-500">{item.period}</div>
+              <div className="font-mono text-xs text-zinc-500">
+                {item.period}
+              </div>
               <div className="mt-1 font-mono text-[11px] text-zinc-600">
                 {item.location}
               </div>
@@ -39,19 +41,6 @@ export function Experience() {
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-4 flex flex-wrap gap-x-3 font-mono text-[11px] text-zinc-500">
-                {item.tags.map((t, j) => (
-                  <span key={t} className="flex items-center gap-3">
-                    {j > 0 && (
-                      <span className="text-zinc-700" aria-hidden>
-                        /
-                      </span>
-                    )}
-                    <span>{t}</span>
-                  </span>
-                ))}
-              </div>
             </div>
           </motion.li>
         ))}
