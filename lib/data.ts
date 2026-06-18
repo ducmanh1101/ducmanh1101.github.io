@@ -431,7 +431,7 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { label: "Years experience", value: "4+" },
+  { label: "Years experience", value: "3+" },
   { label: "TVL secured", value: "$2M+" },
   { label: "Protocols", value: "4" },
 ];
