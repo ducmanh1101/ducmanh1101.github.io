@@ -358,8 +358,8 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "Blockchain Developer",
-    company: "DeFi Protocol (Confidential)",
+    role: "Full-Stack Blockchain Engineer",
+    company: "Prime Vaults",
     period: "2026 — Present",
     location: "Hybrid",
     highlights: [
@@ -383,7 +383,7 @@ export const experience: Experience[] = [
   },
   {
     role: "Fullstack Developer",
-    company: "Sentre",
+    company: "Descartes Network",
     period: "8/2023 — 2/2024",
     location: "Office",
     highlights: [
