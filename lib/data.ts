@@ -384,7 +384,7 @@ export const experience: Experience[] = [
   {
     role: "Fullstack Developer",
     company: "Descartes Network",
-    period: "8/2023 — 2/2024",
+    period: "6/2023 — 1/2024",
     location: "Office",
     highlights: [
       "Built and integrated a notification system using NestJS, React, and Ant Design.",
