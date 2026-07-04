@@ -116,11 +116,11 @@ export function Hero() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-zinc-400"
           >
-            I&apos;m a software engineer who fell into Web3 and never looked
-            back. Over the past few years I&apos;ve moved from building backend
-            services and full-stack products to shipping audited smart
-            contracts, DeFi vaults, and production dApps — pairing clean
-            engineering with on-chain mechanism design.
+            I&apos;m a full-stack software engineer with 4+ years shipping
+            production web apps from database to UI — React, Next.js, and
+            TypeScript on the frontend, Node.js/NestJS, Go, and PostgreSQL on the
+            backend. I&apos;ve scaled systems to 200k+ users and own features
+            end-to-end, with a strong background in DeFi and on-chain systems.
           </motion.p>
 
           <motion.div
