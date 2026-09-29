@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import {
   ArrowRight,
+  FileText,
   Github,
   GraduationCap,
   Linkedin,
@@ -20,6 +21,7 @@ const channelIcons: Record<string, LucideIcon> = {
   Twitter: Twitter,
   Telegram: Send,
   LinkedIn: Linkedin,
+  Resume: FileText,
 };
 
 export function Contact() {

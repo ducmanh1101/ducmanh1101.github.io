@@ -8,6 +8,8 @@ export const profile = {
     "https://www.linkedin.com/in/nguy%E1%BB%85n-%C4%91%E1%BB%A9c-m%E1%BA%A1nh-0b78b9200/?skipRedirect=true",
   telegram: "@jake2k1",
   github: "github.com/ducmanh1101",
+  resume:
+    "https://drive.google.com/file/d/1UnZ2JlNl6ujDMQr_uYFiZW1pMbEpI3gF/view",
   location: "Remote · UTC+7",
   status: "Available for Work",
 };
@@ -358,7 +360,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "Full-Stack Blockchain Engineer",
+    role: "Full-Stack Software Engineer",
     company: "Prime Vaults",
     period: "1/2026 — Present",
     location: "Hybrid",
@@ -424,6 +426,11 @@ export const contactLinks: ContactLink[] = [
     label: "LinkedIn",
     value: "Duc Manh Nguyen",
     href: `${profile.linkedin}`,
+  },
+  {
+    label: "Resume",
+    value: "Google Drive",
+    href: profile.resume,
   },
 ];
 
